@@ -91,7 +91,6 @@ export default function StudentRegistrationForm() {
       [name]: value
     }));
     
-    // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({
         ...prev,
@@ -141,12 +140,10 @@ export default function StudentRegistrationForm() {
     if (!formData.province.trim()) newErrors.province = 'Province is required';
     if (!formData.postalCode.trim()) newErrors.postalCode = 'Postal code is required';
 
-    // Validate postal code format (assuming Philippine format)
     if (formData.postalCode && !/^\d{4}$/.test(formData.postalCode)) {
       newErrors.postalCode = 'Postal code must be 4 digits';
     }
 
-    // Validate student ID format
     if (formData.studentId && formData.studentId.length < 8) {
       newErrors.studentId = 'Student ID must be at least 8 characters';
     }
